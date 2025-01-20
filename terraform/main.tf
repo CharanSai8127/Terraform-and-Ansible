@@ -24,12 +24,14 @@ resource "aws_subnet" "subnet-v1" {
   vpc_id            = aws_vpc.vpc_new.id
   cidr_block        = var.vpc_subnet1_block
   availability_zone = var.avail-zone-1
+  map_public_ip_on_launch = true
 }
 
 resource "aws_subnet" "subnet-v2" {
   vpc_id            = aws_vpc.vpc_new.id
   cidr_block        = var.vpc_subnet2_block
   availability_zone = var.avail-zone-2
+  map_public_ip_on_launch = true
 }
 
 resource "aws_internet_gateway" "igw" {
