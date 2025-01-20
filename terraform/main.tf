@@ -13,7 +13,7 @@ provider "aws" {
 
 resource "aws_key_pair" "instance-key" {
   key_name   = "new-key"
-  public_key = file("~/.ssh/id_rsa.pub")
+  public_key = file("/home/ubuntu/.ssh/id_ed25519.pub")
 }
 
 resource "aws_vpc" "vpc_new" {
@@ -112,7 +112,7 @@ resource "aws_instance" "instance-1" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("~/.ssh/id_rsa")
+    private_key = file("/home/ubuntu/.ssh/id_ed25519")
     host        = self.public_ip
   }
 
@@ -133,7 +133,7 @@ resource "aws_instance" "instance-2" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("~/.ssh/id_rsa")
+    private_key = file("/home/ubuntu/.ssh/id_ed25519")
     host        = self.public_ip
   }
 
