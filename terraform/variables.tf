@@ -32,3 +32,8 @@ variable "instance_type" {
   description = "value for the instance"
   default     = "t2.micro"
 }
+
+variable "key" {
+  description = "value used for the key"
+  default     = "CKA-2024"
+}
