@@ -11,10 +11,6 @@ provider "aws" {
   region = "ap-south-1"
 }
 
-resource "aws_key_pair" "instance-key" {
-  key_name   = "new-key"
-  public_key = file("/home/ubuntu/.ssh/id_ed25519.pub")
-}
 
 resource "aws_vpc" "vpc_new" {
   cidr_block = var.vpc_cidr_block
@@ -107,7 +103,7 @@ resource "aws_dynamodb_table" "terraform_lock" {
 resource "aws_instance" "instance-1" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
-  key_name               = aws_key_pair.instance-key.key_name
+  key_name               = var.key
   subnet_id              = aws_subnet.subnet-v1.id
   vpc_security_group_ids = [aws_security_group.sg-vpc.id]
 
@@ -128,7 +124,7 @@ resource "aws_instance" "instance-1" {
 resource "aws_instance" "instance-2" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
-  key_name               = aws_key_pair.instance-key.key_name
+  key_name               =  var.key
   subnet_id              = aws_subnet.subnet-v2.id
   vpc_security_group_ids = [aws_security_group.sg-vpc.id]
 
